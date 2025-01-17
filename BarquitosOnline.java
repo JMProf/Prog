@@ -81,12 +81,16 @@ public class BarquitosOnline {
      * @param x Coordenada x del disparo.
      * @param y Coordenada y del disparo.
      */
-    public void enviardisparo(int x, int y){
+    public String enviardisparo(int x, int y){
         try{
             flujoSalida.writeInt(x);
             flujoSalida.writeInt(y);
+
+            // Respuesta del rival
+            return flujoEntrada.readUTF();
         }catch(Exception e){
             System.out.println("Error al enviar disparo");
+            return "";
         }
 
     }
@@ -96,14 +100,38 @@ public class BarquitosOnline {
      * @return Array con las coordenadas del disparo.
      */
     public int[] recibirDisparo(){
-        int[] disparo = new int[2];
         try{
-            disparo[0] = flujoEntrada.readInt();
-            disparo[1] = flujoEntrada.readInt();
+            int x = flujoEntrada.readInt();
+            int y = flujoEntrada.readInt();
+            return new int[]{x, y};
         }catch(Exception e){
             System.out.println("Error al recibir disparo");
+            return null;
         }
-        return disparo;
+    }
+
+    public void tocado(){
+        try{
+            flujoSalida.writeUTF("Tocado");
+        }catch(Exception e){
+            System.out.println("Error al enviar tocado");
+        }
+    }
+    
+    public void hundido(){
+        try{
+            flujoSalida.writeUTF("Hundido");
+        }catch(Exception e){
+            System.out.println("Error al enviar hundido");
+        }
+    }
+    
+    public void agua(){
+        try{
+            flujoSalida.writeUTF("Agua");
+        }catch(Exception e){
+            System.out.println("Error al enviar agua");
+        }
     }
 
     /**
