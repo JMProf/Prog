@@ -39,18 +39,16 @@ class CuentaTest {
 
     @Test
     public void testSetSaldo(){
-        Cuenta instance = new Cuenta("1234567890", 1000);
         float saldoCta = 2000;
-        instance.setSaldo(saldoCta);
+        cuenta.setSaldo(saldoCta);
         float resultadoEsperado = 2000;
-        float resultado = instance.getSaldo();
+        float resultado = cuenta.getSaldo();
         assertEquals(resultadoEsperado, resultado);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0, -100, 100})
     public void testIngresarDinero(int number){
-        Cuenta cuenta = new Cuenta("1234567890", 1000);
         cuenta.ingresarDinero(number);
         assertEquals(1000+number, cuenta.getSaldo());
     }
