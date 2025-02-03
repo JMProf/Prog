@@ -4,10 +4,6 @@
  */
 package clasesAbstractas;
 
-/**
- *
- * @author miguel
- */
 public class Principal {
     public static void main(String[] args) {
         // No se puede instanciar directamente una clase abstracta
