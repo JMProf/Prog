@@ -4,10 +4,6 @@
  */
 package clasesAbstractas;
 
-/**
- *
- * @author miguel
- */
 // Clase concreta que hereda de la clase abstracta
 class Perro extends Animal {
     // Atributo adicional
