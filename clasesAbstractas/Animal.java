@@ -4,10 +4,6 @@
  */
 package clasesAbstractas;
 
-/**
- *
- * @author miguel
- */
 // Definición de la clase abstracta
 public abstract class Animal {
     // Atributos
