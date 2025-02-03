@@ -4,10 +4,6 @@
  */
 package clasesAbstractas;
 
-/**
- *
- * @author miguel
- */
 public class Gato extends Animal {
     // Atributo adicional
     String colorPelaje;
