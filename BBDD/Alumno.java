@@ -70,6 +70,31 @@ public class Alumno {
         }
     }
 
+    /**
+     * Método para leer los datos de un objeto alumno
+     * @param conexion
+     * @param dni
+     * @return Objeto de tipo Alumno. Si no existe, devuelve null
+     * @throws SQLException 
+     */
+    public void read(Connection conexion) throws SQLException {
+        String sql = "SELECT * FROM alumnos WHERE dni = ?";
+        try (PreparedStatement statement = conexion.prepareStatement(sql)) {
+            statement.setString(1, this.dni);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                this.nombre = resultSet.getString("nombre");
+                this.apellidos = resultSet.getString("apellidos");
+                this.fechaNacimiento = resultSet.getDate("fechaNacimiento").toLocalDate();
+                this.direccion = resultSet.getString("direccion");
+                this.email = resultSet.getString("email");
+                System.out.println("Datos del alumno actualizados desde la base de datos.");
+            } else {
+                System.out.println("No se encontró ningún alumno con el DNI especificado.");
+            }
+        }
+    }
+
     public void update(Connection conexion) throws SQLException {
         String sql = "UPDATE alumnos SET nombre = ?, apellidos = ?, fechaNacimiento = ?, direccion = ?, email = ? WHERE dni = ?";
         try (PreparedStatement statement = conexion.prepareStatement(sql)) {
